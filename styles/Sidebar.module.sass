@@ -1,0 +1,113 @@
+@import ./Var
+
+@mixin navItem()
+    width: 3rem
+    height: 3rem
+
+    display: flex
+    justify-content: center
+    align-items: center
+    border-radius: .3em
+    background-color: transparent
+
+    cursor: pointer
+    transition: .4s ease
+    
+.sidebar
+    height: 100vh
+    box-shadow: 3px 0 6px var(--shadow-acc)
+    width: 4rem
+
+    background-color: var(--back-a)
+
+    display: flex
+    flex-direction: column
+    justify-content: space-between
+    align-items: center
+
+    color: var(--text-a) !important
+    padding: .5rem
+    z-index: 12
+
+    nav
+        a
+            @include navItem()
+
+            > *
+                transition: .4s ease
+            &:hover
+                background-color: var(--back-c)
+                box-shadow: 0 3px 6px var(--shadow)
+            &.active
+                background-color: $acc !important
+                box-shadow: 0 3px 6px $acct70
+            *
+                width: 2.2rem
+                
+    .menuWrapper
+        position: relative
+
+        > main
+            position: absolute
+            bottom: 110%
+            left: 0
+            width: max-content
+
+            border: 1px solid var(--text-f)
+            border-radius: .2em
+            padding: .6rem 0
+            background-color: var(--back-a)
+            box-shadow: 0 4px 7px var(--shadow)
+
+            display: flex
+            flex-direction: column
+            justify-content: center
+            align-items: center
+
+            visibility: hidden
+            opacity: 0
+            transform: translateY(5px)
+            transition: .2s ease
+
+            &.open
+                visibility: visible
+                opacity: 1
+                transform: translateY(0)
+
+            a, button
+                width: 100%
+                padding: .5rem 1rem
+                user-select: none
+
+                color: var(--text-a)
+                font-size: 1rem
+                font-weight: 600
+
+                border: none
+                outline: none
+                text-decoration: none
+
+                cursor: pointer
+                background-color: transparent
+
+                transition: .3s ease
+
+                &:hover
+                    background-color: var(--back-c)
+                &:active
+                    background-color: var(--back-b)
+
+        > button
+            @include navItem()
+
+            border: none
+            outline: 2px solid transparent
+
+            &:hover
+                outline: 2px solid var(--text-g)
+            &:active
+                background-color: var(--back-b)
+            &.active
+                background-color: var(--back-d)
+                box-shadow: 0 2px 6px var(--shadow)
+
