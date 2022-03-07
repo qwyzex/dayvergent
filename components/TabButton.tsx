@@ -7,7 +7,7 @@ export interface TabButtonProps {
     type: "redirect" | "setState";
     path: string | Dispatch<SetStateAction<string>>;
     children?: React.ReactChildren;
-    text?: string;
+    text?: React.ReactNode;
 }
 
 export default function TabButton({ children, type, path, text }: TabButtonProps) {

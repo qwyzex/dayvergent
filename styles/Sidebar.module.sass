@@ -15,7 +15,7 @@
     
 .sidebar
     height: 100vh
-    box-shadow: 3px 0 6px var(--shadow-acc)
+    box-shadow: 0 0 6px var(--shadow-acc)
     width: 4rem
 
     background-color: var(--back-a)
@@ -29,6 +29,11 @@
     padding: .5rem
     z-index: 12
 
+    position: fixed
+    top: 0
+    left: var(--sidebar-left)
+    right: var(--sidebar-right)
+
     nav
         a
             @include navItem()
@@ -41,6 +46,9 @@
             &.active
                 background-color: $acc !important
                 box-shadow: 0 3px 6px $acct70
+
+                svg
+                    fill: var(--back-a)
             *
                 width: 2.2rem
                 
@@ -50,7 +58,8 @@
         > main
             position: absolute
             bottom: 110%
-            left: 0
+            left: var(--sidebar-left)
+            right: var(--sidebar-right)
             width: max-content
 
             border: 1px solid var(--text-f)

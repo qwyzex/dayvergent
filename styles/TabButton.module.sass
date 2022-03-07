@@ -1,7 +1,11 @@
 @import ./Var
     
 .button
-    padding: .5rem 1rem
+    display: flex
+    justify-content: center
+    align-items: center
+
+    padding: .7rem
     border: none
     outline: none
     background: transparent
@@ -9,6 +13,7 @@
     position: relative
     transition: .4s ease
     font-weight: 600
+    font-size: .8em
 
     border-radius: .4em
     opacity: .6
@@ -19,11 +24,15 @@
 
     &:not(.active)
         color: var(--text-a)
+        > *
+            fill: var(--text-a)
 
     &.active
         color: darken($acc, 10%) !important
         background-color: $acct70
         opacity: 1
+        > *
+            fill: darken($acc, 10%) !important
 
     &:hover
         opacity: 1

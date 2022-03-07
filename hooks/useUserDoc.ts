@@ -12,6 +12,7 @@ import useUserPresence from "./useUserPresence";
 import { useAuthState } from "react-firebase-hooks/auth";
 import useUserData from "./useUserData";
 import { onAuthStateChanged } from "firebase/auth";
+import userDocTemplate from "../template/userDocTemplate";
 
 export default function useUserDoc() {
     const [userDoc, setUserDoc] = useState<DocumentData | undefined | null>(null);
@@ -25,6 +26,7 @@ export default function useUserDoc() {
             if (userData) {
                 onSnapshot(doc(db, `users/${userData?.uid}`), (doc) => {
                     setUserDoc(doc.data());
+                    // setUserDoc(userDocTemplate);
                     isLoading && setIsLoading(false);
                     if (doc.metadata.hasPendingWrites && !pendingWrites) {
                         setPendingWrites(true);

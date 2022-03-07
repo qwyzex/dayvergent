@@ -50,6 +50,9 @@ export default function SignUp() {
                                 "hex"
                             ),
                             gender: formValueGender,
+                            account: {
+                                private: false,
+                            },
                         }).then(() => {
                             sessionStorage.setItem("newUser", "true");
                             redirect("/dashboard");

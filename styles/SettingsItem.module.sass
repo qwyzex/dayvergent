@@ -1,0 +1,24 @@
+@media ( max-width: 35rem )
+    .container
+        flex-direction: column !important
+    
+.container
+    display: flex
+
+    padding: 1rem 0
+
+    &:not(.bigChildren)
+        flex-direction: row
+        justify-content: space-between
+
+    &.bigChildren
+        flex-direction: column
+
+        > article
+            margin-block-end: 5px
+
+    &.danger
+        outline: 2px solid #ff003c
+    
+    > *
+        max-width: calc( 90vw - 6rem )

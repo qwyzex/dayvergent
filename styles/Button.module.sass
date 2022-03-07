@@ -1,0 +1,31 @@
+@import ./Var
+    
+.button
+    padding: .5rem 1rem
+    border: none
+    outline: none
+    background: transparent
+
+    position: relative
+    transition: .4s ease
+    font-weight: 600
+
+    border-radius: .4em
+    opacity: .7
+    cursor: pointer
+
+    &:not(:disabled)
+        &:not(.active)
+            color: var(--text-a)
+
+        &.active
+            color: darken($acc, 10%) !important
+            background-color: $acct70
+            opacity: 1
+
+        &:hover
+            opacity: 1
+
+    &:disabled
+        opacity: .4
+        color: var(--text-g)

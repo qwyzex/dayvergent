@@ -1,6 +1,8 @@
 @import ./Var
     
 .x
+    display: flex
+
     --acc: #16FB71
     --sec: #5602f1
     --trd: #1182ec
@@ -8,11 +10,31 @@
     --shadow-acc: #16FB7140
     color: var(--text-a)
 
-    // display: flex
-    // justify-content: center
-    // align-items: center
     min-height: 100vh
-    
+
+    padding-inline: var(--layout-inline-padding-sidebar-conditional)
+
+    // fonts
+    &.font_XL
+        font-size: 21px
+    &.font_L
+        font-size: 18px
+    &.font_M
+        font-size: 15px
+    &.font_S
+        font-size: 12px
+    &.font_XS
+        font-size: 9px
+
+    &.sidebar_left
+        --sidebar-left: 0
+        --sidebar-right: auto
+        --layout-inline-padding-sidebar-conditional: 4rem 0
+    &.sidebar_right
+        --sidebar-left: auto
+        --sidebar-right: 0
+        --layout-inline-padding-sidebar-conditional: 0 4rem
+
     * 
         color: var(--text-a)
 
