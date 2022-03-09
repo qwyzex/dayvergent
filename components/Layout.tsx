@@ -22,25 +22,6 @@ export default function Layout({ children }: LayoutInterface) {
 
     const appearance = useAppearance();
 
-    const [mobile, setMobile] = useState<boolean>(true);
-
-    useEffect(() => {
-        // @ts-ignore
-        setMobile(navigator?.userAgentData?.mobile);
-    }, []);
-
-    const layoutFlexDirection = () => {
-        if (userR.userData) {
-            if (appearance.sidebarAlignment === "right") {
-                return "row-reverse";
-            } else {
-                return "row";
-            }
-        } else {
-            return "column";
-        }
-    };
-
     return (
         <div
             id="__layout"
@@ -68,17 +49,13 @@ export default function Layout({ children }: LayoutInterface) {
                 "--font-body": appearance.fontFamily,
             }}
         >
-            {!mobile ? (
-                !userR.loading ? (
-                    <>
-                        {userR.userDoc ? <Sidebar /> : <Header />}
-                        <main className={styles.appMainComponent}>{children}</main>
-                    </>
-                ) : (
-                    "LOADING..."
-                )
+            {!userR.loading ? (
+                <>
+                    {userR.userDoc ? <Sidebar /> : <Header />}
+                    <main className={styles.appMainComponent}>{children}</main>
+                </>
             ) : (
-                <MobilePlatformWarning />
+                "LOADING..."
             )}
         </div>
     );

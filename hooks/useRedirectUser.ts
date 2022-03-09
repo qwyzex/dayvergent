@@ -17,20 +17,10 @@ export default function useRedirectUser() {
 
     useEffect(() => {
         onAuthStateChanged(auth, (user) => {
-            // @ts-ignore
-            if (!navigator?.userAgentData.mobile) {
-                if (!user && route.match(anonymousForbiddenPathRegex)) {
-                    return redirect("/login");
-                } else if (user && route.match(userForbiddenPathRegex)) {
-                    return redirect("/dashboard");
-                }
-                // @ts-ignore
-            } else if (navigator.userAgentData === undefined) {
-                if (!user && route.match(anonymousForbiddenPathRegex)) {
-                    return redirect("/login");
-                } else if (user && route.match(userForbiddenPathRegex)) {
-                    return redirect("/dashboard");
-                }
+            if (!user && route.match(anonymousForbiddenPathRegex)) {
+                return redirect("/login");
+            } else if (user && route.match(userForbiddenPathRegex)) {
+                return redirect("/dashboard");
             }
         });
     }, [USER.userDoc, route]);
