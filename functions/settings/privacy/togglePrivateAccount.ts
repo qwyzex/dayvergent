@@ -26,6 +26,7 @@ export default async function togglePrivateAccount(
                 setLoading(false);
             })
             .catch((err) => {
+                console.warn(err.message);
                 setLoading(false);
             });
     } else {
