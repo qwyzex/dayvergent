@@ -3,6 +3,7 @@ import Button from "../../components/Button";
 import SettingsItem from "../../components/settings/SettingsItem";
 import changeFontSize from "../../functions/settings/appearance/changeFontSize";
 import useAppearance from "../../hooks/settings/useAppearance";
+import fontFamilyData from "../../options/settings/appearance/fontFamilyData";
 
 export default function Appearance() {
     const _f = useAppearance();
@@ -72,16 +73,7 @@ export default function Appearance() {
                 description="Change non-monospace font family for the app"
             >
                 <Select
-                    data={[
-                        {
-                            value: "Poppins",
-                            label: "Poppins",
-                        },
-                        {
-                            value: "Times New Roman",
-                            label: "Times New Roman",
-                        },
-                    ]}
+                    data={fontFamilyData}
                     value={_f.fontFamily}
                     onChange={(e: any) => _f.function.changeFontFamily(e)}
                     styles={{
