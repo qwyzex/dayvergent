@@ -8,10 +8,13 @@ import SVG from "../svg";
 import { useViewportSize } from "@mantine/hooks";
 import { useEffect } from "react";
 import Head from "next/head";
+import useError from "../../hooks/useError";
+import { LoadingOverlay } from "@mantine/core";
 
 export default function SettingsLayout({ children }: any) {
     const route = useCurrentRoute();
     const window = useViewportSize();
+    const error = useError();
 
     useEffect(() => {
         console.log(window);
@@ -82,12 +85,19 @@ export default function SettingsLayout({ children }: any) {
                 </>
             )}
             <section
-                style={{
-                    maxWidth: route.match(/^\/settings.*/g)
-                        ? "calc(95vw - 6rem)"
-                        : "auto",
-                    width: route.match(/^\/settings.*/g) ? "40rem" : "auto",
-                }}
+                style={
+                    route.match(/^\/settings.*/g)
+                        ? {
+                              //   position: "relative",
+                              maxWidth: "calc(95vw - 6rem)",
+                              width: "40rem",
+                          }
+                        : {
+                              //   position: "relative",
+                              maxWidth: "auto",
+                              width: "auto",
+                          }
+                }
             >
                 {children}
             </section>
