@@ -1,8 +1,18 @@
-import { Checkbox, LoadingOverlay } from "@mantine/core";
+import {
+    Checkbox,
+    CheckboxIcon,
+    Code,
+    LoadingOverlay,
+    Popover,
+    Tooltip,
+} from "@mantine/core";
+import { useClickOutside } from "@mantine/hooks";
 import { useNotifications } from "@mantine/notifications";
 import { updateCurrentUser } from "firebase/auth";
 import { doc, updateDoc } from "firebase/firestore";
 import { useEffect, useState } from "react";
+import Button from "../../components/Button";
+import Divider from "../../components/Divider";
 import SettingsItem from "../../components/settings/SettingsItem";
 import SVG from "../../components/svg";
 import { auth, db } from "../../firebase";
@@ -15,6 +25,7 @@ export default function Privacy() {
     const { userDoc, userData } = useUserPresence();
 
     const [privateAccountLoading, setPrivateAccountLoading] = useState(false);
+    const [showUID, setShowUID] = useState(false);
 
     const error = useError();
 
@@ -51,6 +62,52 @@ export default function Privacy() {
                         )
                     }
                 />
+            </SettingsItem>
+            <h5 style={{ marginTop: "10px" }}>Information</h5>
+            <Divider />
+            <SettingsItem title="USER UID">
+                <Tooltip
+                    opened={showUID}
+                    position="top"
+                    transition={"pop"}
+                    withArrow
+                    label={userData?.uid}
+                >
+                    <Button onClick={() => setShowUID(!showUID)} active={showUID}>
+                        SHOW
+                    </Button>
+                </Tooltip>
+                <Button
+                    onClick={() => {
+                        navigator.clipboard.writeText(userData!.uid);
+                        notif.showNotification({
+                            title: "UID COPPIED",
+                            message: "Successfully copy the UID!",
+                            color: "lime",
+                        });
+                    }}
+                    general
+                >
+                    COPY
+                </Button>
+            </SettingsItem>
+            <SettingsItem title="AUTH TOKEN">
+                <Button
+                    onClick={() => {
+                        userData?.getIdToken().then((res) => {
+                            navigator.clipboard.writeText(res);
+                            notif.showNotification({
+                                title: "AUTH TOKEN COPPIED",
+                                message:
+                                    "Successfully copy the TOKEN! Don't share the token with anyone!",
+                                color: "lime",
+                            });
+                        });
+                    }}
+                    general
+                >
+                    COPY
+                </Button>
             </SettingsItem>
         </div>
     );
