@@ -4,27 +4,46 @@
     padding: .5rem 1rem
     border: none
     outline: none
-    background: transparent
+
+    font-family: var(--font-body)
 
     position: relative
     transition: .4s ease
     font-weight: 600
 
-    border-radius: .4em
-    opacity: .7
     cursor: pointer
+    border-radius: .4em
 
-    &:not(:disabled)
-        &:not(.active)
-            color: var(--text-a)
+    &:not(.general)
+        background: transparent
+        opacity: .7
+
+        &:not(:disabled)
+            &:not(.active)
+                color: var(--text-a)
+
+            &.active
+                color: darken($acc, 10%) !important
+                background-color: $acct70
+                opacity: 1
+
+            &:hover
+                opacity: 1
+
+
+    &.general
+        color: var(--text-b)
+        background-color: var(--back-b)
 
         &.active
-            color: darken($acc, 10%) !important
-            background-color: $acct70
+            color: var(--text-a)
+            background-color: var(--back-c)
             opacity: 1
 
         &:hover
-            opacity: 1
+            background-color: var(--back-c)
+        &:active
+            background-color: var(--back-b)
 
     &:disabled
         opacity: .4
