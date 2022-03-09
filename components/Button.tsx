@@ -5,12 +5,21 @@ export interface ButtonInterface {
     children?: React.ReactNode;
     onClick?: () => void | Promise<void>;
     disabled?: boolean;
+    general?: boolean;
 }
 
-export default function Button({ active, children, onClick, disabled }: ButtonInterface) {
+export default function Button({
+    active,
+    children,
+    onClick,
+    disabled,
+    general,
+}: ButtonInterface) {
     return (
         <button
-            className={`${styles.button} ${active ? styles.active : ""}`}
+            className={`${styles.button} ${general ? styles.general : ""} ${
+                active ? styles.active : ""
+            }`}
             disabled={disabled}
             onClick={onClick}
         >
