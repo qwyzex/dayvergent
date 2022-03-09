@@ -1,4 +1,4 @@
-import { doc, getDoc } from "firebase/firestore";
+import { doc, getDoc, updateDoc } from "firebase/firestore";
 import Head from "next/head";
 import Link from "next/link";
 import { useEffect, useState } from "react";

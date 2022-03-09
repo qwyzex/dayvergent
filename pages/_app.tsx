@@ -9,6 +9,7 @@ import Link from "next/link";
 import Router from "next/router";
 import SettingsLayout from "../components/settings/SettingsLayout";
 import { MantineProvider, MantineThemeOverride } from "@mantine/core";
+import { NotificationsProvider } from "@mantine/notifications";
 
 function DayDev({ Component, pageProps, ...appProps }: AppProps) {
     return (
@@ -28,11 +29,13 @@ function DayDev({ Component, pageProps, ...appProps }: AppProps) {
                 },
             }}
         >
-            <Layout>
-                <SettingsLayout>
-                    <Component {...pageProps} />
-                </SettingsLayout>
-            </Layout>
+            <NotificationsProvider>
+                <Layout>
+                    <SettingsLayout>
+                        <Component {...pageProps} />
+                    </SettingsLayout>
+                </Layout>
+            </NotificationsProvider>
         </MantineProvider>
     );
 }
