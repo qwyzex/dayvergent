@@ -1,5 +1,4 @@
 import { useEffect, useState } from "react";
-import useUserPresence from "../../useUserPresence";
 import useZeroLatency from "../../useZeroLatency";
 
 export default function useFontSize() {
