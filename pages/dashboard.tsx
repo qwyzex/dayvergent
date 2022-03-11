@@ -2,6 +2,7 @@ import { collection, doc, getDoc, getDocs, query, updateDoc } from "firebase/fir
 import Head from "next/head";
 import Link from "next/link";
 import { useEffect, useState } from "react";
+import TodosLists from "../components/dashboard/TodosLists";
 import Greetings from "../components/Greetings";
 import JournalForm from "../components/journal/Form";
 import TodoForm from "../components/todo/Form";
@@ -27,17 +28,7 @@ export default function Dashboard() {
             </Head>
             <h1>Dashboard</h1>
             <TodoForm />
-            <section>
-                <h1>TODO</h1>
-                {todos?.length
-                    ? todos.map((e) => (
-                          <div key={e.id}>
-                              <h4>{e.id}</h4>
-                              <p>{e.name}</p>
-                          </div>
-                      ))
-                    : "NO DATA"}
-            </section>
+            <TodosLists />
             <section>
                 <h1>JOURNAL</h1>
                 {journals?.length
