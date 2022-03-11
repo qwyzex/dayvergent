@@ -1,0 +1,26 @@
+@import ../../styles/Var
+    
+.container
+    height: 100%
+
+    background-color: $acc
+
+    padding: .6rem
+    border-radius: .3em
+
+    .wrapper
+        display: flex
+        flex-direction: column
+        gap: .2em
+
+        .todosItem
+            list-style: none
+            padding: .4rem
+
+            background-color: $sec
+            transition: .3s ease-in
+
+            color: #f5f5f5
+
+            &:hover
+                background-color: lighten($sec, 4%)
