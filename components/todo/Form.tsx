@@ -23,7 +23,7 @@ export default function TodoForm() {
                     .replace(" ", "-")}-${Math.random() * 20000000000000000}`
             ),
             {
-                name: value,
+                title: value,
                 done: false,
                 pin: false,
                 favorite: false,
@@ -50,11 +50,7 @@ export default function TodoForm() {
                 />
             </div>
             <div>
-                <input
-                    type={"submit"}
-                    value={loading ? "Wait..." : "Add"}
-                    placeholder="What To Do?"
-                />
+                <input type={"submit"} value={loading ? "Wait..." : "Add"} />
             </div>
         </form>
     );
