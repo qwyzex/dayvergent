@@ -1,8 +1,6 @@
 import { Select, Slider } from "@mantine/core";
-import { useEffect } from "react";
 import Button from "../../components/Button";
 import SettingsItem from "../../components/settings/SettingsItem";
-import changeFontSize from "../../functions/settings/appearance/changeFontSize";
 import useAppearance from "../../hooks/settings/useAppearance";
 import fontFamilyData from "../../options/settings/appearance/fontFamilyData";
 
@@ -16,17 +14,13 @@ export default function Appearance() {
         { value: 100, label: "XL" },
     ];
 
-    useEffect(() => {
-        return () => {};
-    }, []);
-
     return (
         <div>
             <SettingsItem title="Application Theme" bigChild>
                 <Button
                     active={_f.theme === "light" && true}
                     onClick={() => {
-                        _f.function.changeTheme("light");
+                        _f.functionHooks.changeTheme("light");
                     }}
                 >
                     LIGHT
@@ -34,7 +28,7 @@ export default function Appearance() {
                 <Button
                     active={_f.theme === "dark" && true}
                     onClick={() => {
-                        _f.function.changeTheme("dark");
+                        _f.functionHooks.changeTheme("dark");
                     }}
                 >
                     DARK
@@ -72,8 +66,7 @@ export default function Appearance() {
                         },
                     }}
                     onChange={(e) => {
-                        // changeFontSize(e);
-                        _f.function.changeFontSize(e);
+                        _f.functionHooks.changeFontSize(e);
                     }}
                 />
             </SettingsItem>
@@ -85,7 +78,7 @@ export default function Appearance() {
                     data={fontFamilyData}
                     value={_f.fontFamily}
                     onChange={(e: any) => {
-                        _f.function.changeFontFamily(e);
+                        _f.functionHooks.changeFontFamily(e);
                     }}
                     styles={{
                         input: {
@@ -110,7 +103,7 @@ export default function Appearance() {
                 <Button
                     active={_f.sidebarAlignment === "left" && true}
                     onClick={() => {
-                        _f.function.changeSidebarAlignment("left");
+                        _f.functionHooks.changeSidebarAlignment("left");
                     }}
                 >
                     LEFT
@@ -118,7 +111,7 @@ export default function Appearance() {
                 <Button
                     active={_f.sidebarAlignment === "right" && true}
                     onClick={() => {
-                        _f.function.changeSidebarAlignment("right");
+                        _f.functionHooks.changeSidebarAlignment("right");
                     }}
                 >
                     RIGHT
