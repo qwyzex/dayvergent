@@ -14,10 +14,6 @@ export default function useUserData() {
                     user.metadata.lastSignInTime?.replace(/^.{5}/g, "")!
                 ).toString()
             );
-            localStorage.setItem(
-                "today",
-                Date.parse(new Date().toDateString()).toString()
-            );
         }
     });
 
