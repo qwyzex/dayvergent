@@ -1,8 +1,9 @@
 import { useEffect, useState } from "react";
 import useUserPresence from "../../useUserPresence";
+import useZeroLatency from "../../useZeroLatency";
 
 export default function useSidebarAlignment() {
-    const user = useUserPresence();
+    const int = useZeroLatency();
     const [position, setPosition] = useState<string | "left" | "right">("left");
 
     useEffect(() => {
@@ -13,7 +14,7 @@ export default function useSidebarAlignment() {
         } else {
             localStorage.setItem("sidebarPosition", "left");
         }
-    }, [user]);
+    }, [int]);
 
-    return position;
+    return { position, setPosition };
 }

@@ -1,4 +1,5 @@
 import { Select, Slider } from "@mantine/core";
+import { useEffect } from "react";
 import Button from "../../components/Button";
 import SettingsItem from "../../components/settings/SettingsItem";
 import changeFontSize from "../../functions/settings/appearance/changeFontSize";
@@ -15,19 +16,26 @@ export default function Appearance() {
         { value: 100, label: "XL" },
     ];
 
+    useEffect(() => {
+        return () => {};
+    }, []);
+
     return (
         <div>
             <SettingsItem title="Application Theme" bigChild>
                 <Button
                     active={_f.theme === "light" && true}
-                    onClick={() => _f.function.changeTheme("light")}
+                    onClick={() => {
+                        _f.function.changeTheme("light");
+                    }}
                 >
                     LIGHT
                 </Button>
                 <Button
                     active={_f.theme === "dark" && true}
-                    // disabled
-                    onClick={() => _f.function.changeTheme("dark")}
+                    onClick={() => {
+                        _f.function.changeTheme("dark");
+                    }}
                 >
                     DARK
                 </Button>
@@ -64,7 +72,8 @@ export default function Appearance() {
                         },
                     }}
                     onChange={(e) => {
-                        changeFontSize(e);
+                        // changeFontSize(e);
+                        _f.function.changeFontSize(e);
                     }}
                 />
             </SettingsItem>
@@ -75,7 +84,9 @@ export default function Appearance() {
                 <Select
                     data={fontFamilyData}
                     value={_f.fontFamily}
-                    onChange={(e: any) => _f.function.changeFontFamily(e)}
+                    onChange={(e: any) => {
+                        _f.function.changeFontFamily(e);
+                    }}
                     styles={{
                         input: {
                             backgroundColor: "var(--back-a)",
@@ -98,13 +109,17 @@ export default function Appearance() {
             >
                 <Button
                     active={_f.sidebarAlignment === "left" && true}
-                    onClick={() => _f.function.changeSidebarAlignment("left")}
+                    onClick={() => {
+                        _f.function.changeSidebarAlignment("left");
+                    }}
                 >
                     LEFT
                 </Button>
                 <Button
                     active={_f.sidebarAlignment === "right" && true}
-                    onClick={() => _f.function.changeSidebarAlignment("right")}
+                    onClick={() => {
+                        _f.function.changeSidebarAlignment("right");
+                    }}
                 >
                     RIGHT
                 </Button>

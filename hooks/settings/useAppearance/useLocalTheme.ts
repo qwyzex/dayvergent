@@ -1,19 +1,23 @@
 import { useEffect, useState } from "react";
 import useUserPresence from "../../useUserPresence";
+import useZeroLatency from "../../useZeroLatency";
 
 export default function useLocalTheme() {
+    const int = useZeroLatency();
     const [theme, setTheme] = useState<string | null>(null);
-    const user = useUserPresence();
 
     useEffect(() => {
         const localTheme = localStorage.getItem("theme");
-        if (localTheme) {
-            setTheme(localTheme);
-        } else {
-            localStorage.setItem("theme", "light");
-            setTheme("light");
-        }
-    }, [user]);
 
-    return theme;
+        return () => {
+            if (localTheme) {
+                setTheme(localTheme);
+            } else {
+                localStorage.setItem("theme", "light");
+                setTheme("light");
+            }
+        };
+    }, [int]);
+
+    return { theme, setTheme };
 }

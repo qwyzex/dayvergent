@@ -1,9 +1,10 @@
 import { useEffect, useState } from "react";
 import useUserPresence from "../../useUserPresence";
+import useZeroLatency from "../../useZeroLatency";
 
 export default function useLocalFont() {
-    const user = useUserPresence();
-    const [fotnFamily, setFontFamily] = useState("Poppins");
+    const int = useZeroLatency();
+    const [fontFamily, setFontFamily] = useState("Poppins");
 
     useEffect(() => {
         const f = localStorage.getItem("fontFamily");
@@ -13,7 +14,7 @@ export default function useLocalFont() {
         } else {
             localStorage.setItem("fontFamily", "Poppins");
         }
-    }, [user]);
+    }, [int]);
 
-    return fotnFamily;
+    return { fontFamily, setFontFamily };
 }

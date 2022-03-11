@@ -1,8 +1,9 @@
 import { useEffect, useState } from "react";
 import useUserPresence from "../../useUserPresence";
+import useZeroLatency from "../../useZeroLatency";
 
 export default function useFontSize() {
-    const user = useUserPresence();
+    const int = useZeroLatency();
     const [fontSize, setFontSize] = useState<number | 0 | 25 | 50 | 75 | 100>(50);
 
     useEffect(() => {
@@ -13,7 +14,7 @@ export default function useFontSize() {
         } else {
             localStorage.setItem("fontSize", "50");
         }
-    }, [user]);
+    }, [int]);
 
-    return fontSize;
+    return { fontSize, setFontSize };
 }
