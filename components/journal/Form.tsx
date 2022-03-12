@@ -3,9 +3,10 @@ import { useState } from "react";
 import { db } from "../../firebase";
 import useUserPresence from "../../hooks/useUserPresence";
 import styles from "../../styles/Forms/Journal.module.sass";
-import uuid from "uuid";
+import { v4 } from "uuid";
+import DayVFormInterface from "../../types/DayVFormInterface";
 
-export default function JournalForm() {
+export default function JournalForm({ setDraft }: DayVFormInterface) {
     const { userData } = useUserPresence();
     const [loading, setLoading] = useState(false);
 
@@ -16,7 +17,7 @@ export default function JournalForm() {
         e.preventDefault();
         setLoading(true);
 
-        await setDoc(doc(db, `users/${userData?.uid}/journal/${uuid.v4()}`), {
+        await setDoc(doc(db, `users/${userData?.uid}/journal/${v4()}`), {
             name: formValueTitle,
             body: formValueBody,
             favorite: false,
@@ -27,6 +28,7 @@ export default function JournalForm() {
                 setFormValueBody("");
                 setFormValueTitle("");
                 setLoading(false);
+                setDraft && setDraft(false);
             })
             .catch((err) => alert(err.message));
     };
@@ -38,8 +40,13 @@ export default function JournalForm() {
                 <input
                     type="text"
                     value={formValueTitle}
-                    onChange={(e) => setFormValueTitle(e.target.value)}
+                    onChange={(e) => {
+                        setFormValueTitle(e.target.value);
+                        setDraft && setDraft(true);
+                    }}
                     placeholder="Your journal title"
+                    autoFocus
+                    data-autofocus
                 />
             </div>
             <div>
@@ -47,7 +54,10 @@ export default function JournalForm() {
                 <input
                     type="text"
                     value={formValueBody}
-                    onChange={(e) => setFormValueBody(e.target.value)}
+                    onChange={(e) => {
+                        setFormValueBody(e.target.value);
+                        setDraft && setDraft(true);
+                    }}
                     placeholder="Your journal story"
                 />
             </div>

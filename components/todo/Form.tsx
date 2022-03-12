@@ -4,8 +4,9 @@ import styles from "./Form.module.sass";
 
 import { setDoc, doc, collection } from "firebase/firestore";
 import { db } from "../../firebase";
+import DayVFormInterface from "../../types/DayVFormInterface";
 
-export default function TodoForm() {
+export default function TodoForm({ setDraft }: DayVFormInterface) {
     const user = useUserPresence();
 
     const [value, setValue] = useState("");
@@ -33,6 +34,7 @@ export default function TodoForm() {
             .then(() => {
                 setLoading(false);
                 setValue("");
+                setDraft && setDraft(false);
             })
             .catch((err) => {
                 setLoading(false);
@@ -46,7 +48,13 @@ export default function TodoForm() {
                 <input
                     type="text"
                     value={value}
-                    onChange={(e) => setValue(e.target.value)}
+                    onChange={(e) => {
+                        setValue(e.target.value);
+                        setDraft && setDraft(true);
+                    }}
+                    autoFocus
+                    data-autofocus
+                    placeholder="What To Do?"
                 />
             </div>
             <div>
