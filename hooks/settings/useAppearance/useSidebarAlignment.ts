@@ -7,12 +7,12 @@ export default function useSidebarAlignment() {
     const [position, setPosition] = useState<string | "left" | "right">("left");
 
     useEffect(() => {
-        const sp = localStorage.getItem("sidebarPosition");
+        const sp = localStorage.getItem("sidebarAlignment");
 
         if (sp) {
             setPosition(sp);
         } else {
-            localStorage.setItem("sidebarPosition", "left");
+            localStorage.setItem("sidebarAlignment", "left");
         }
     }, [int]);
 
