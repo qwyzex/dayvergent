@@ -16,10 +16,6 @@ export default function SettingsLayout({ children }: any) {
     const window = useViewportSize();
     const error = useError();
 
-    useEffect(() => {
-        console.log(window);
-    }, [window]);
-
     const title = () => {
         switch (route) {
             case "/settings":
