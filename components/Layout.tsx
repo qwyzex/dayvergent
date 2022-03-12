@@ -43,7 +43,7 @@ export default function Layout({ children }: LayoutInterface) {
     };
 
     useEffect(() => {
-        return () => {};
+        sessionStorage.setItem("today", Date.parse(new Date().toString()).toString());
     }, []);
 
     return (
