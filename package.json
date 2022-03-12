@@ -21,12 +21,14 @@
         "@mantine/modals": "^3.6.9",
         "@mantine/notifications": "^3.6.9",
         "@mantine/rte": "^3.6.9",
+        "@types/uuid": "^8.3.4",
         "dayjs": "^1.10.7",
         "firebase": "^9.6.7",
         "next": "12.0.9",
         "react": "17.0.2",
         "react-dom": "17.0.2",
-        "react-firebase-hooks": "^4.0.2"
+        "react-firebase-hooks": "^4.0.2",
+        "uuid": "^8.3.2"
     },
     "devDependencies": {
         "@types/node": "17.0.12",
