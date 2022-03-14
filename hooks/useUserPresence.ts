@@ -9,14 +9,12 @@ export default function useUserPresence() {
     const [loading, setLoading] = useState<boolean>(true);
 
     useEffect(() => {
-        return () => {
-            if (userData && userDoc) {
-                loading && setLoading(false);
-                !exists && setExists(true);
-            } else if (!userData) {
-                setLoading(false);
-            }
-        };
+        if (userData && userDoc) {
+            loading && setLoading(false);
+            !exists && setExists(true);
+        } else if (!userData) {
+            setLoading(false);
+        }
     }, [userData, userDoc, exists, loading]);
 
     return { userData, userDoc, loading, exists };
